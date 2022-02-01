@@ -27,7 +27,6 @@ import java.util.ResourceBundle;
 
 public class DepartmentListController implements Initializable {
 
-
     @FXML
     private TableView<Department> tableViewDepartment;
     @FXML
@@ -43,7 +42,8 @@ public class DepartmentListController implements Initializable {
     @FXML
     public void onBtNewAction(ActionEvent event){
         Stage parentStage = Utils.currentStage(event);
-        createDialogForm(parentStage,"DepartmentForm.fxml");
+        Department obj = new Department();
+        createDialogForm(obj, parentStage,"DepartmentForm.fxml");
 
     }
 
@@ -62,10 +62,14 @@ public class DepartmentListController implements Initializable {
 
     }
 
-    private void createDialogForm(Stage parentStage, String absoluteName) {
+    private void createDialogForm(Department obj, Stage parentStage, String absoluteName) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource(absoluteName));
             Pane pane = fxmlLoader.load();
+
+            DepartmentFormController controller = fxmlLoader.getController();
+            controller.setEntity(obj);
+            controller.updateFormData();
             Stage dialogStage = new Stage();
 
             dialogStage.setTitle("Enter Department Data");
@@ -79,7 +83,6 @@ public class DepartmentListController implements Initializable {
             e.printStackTrace();
         }
     }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

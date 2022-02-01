@@ -40,7 +40,7 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
-        }finally {
+        } finally {
             DB.closeStatement(st);
         }
 
@@ -125,4 +125,14 @@ public class DepartmentDaoJDBC implements DepartmentDao {
         }
 
     }
+    @Override
+    public void saveOrUpdate(Department department) {
+        if (department.getId() == null) {
+            insert(department);
+
+        } else {
+            update(department);
+        }
+    }
+
 }
