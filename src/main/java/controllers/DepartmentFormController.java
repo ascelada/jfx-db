@@ -63,16 +63,16 @@ public class DepartmentFormController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//       initializeNodes();
+       initializeNodes();
 
     }
 
-//    public void initializeNodes() {
-//        txtID.textProperty().addListener((obs, oldValue, newValue) -> {
-//            if (newValue != null && !newValue.matches("\\d")) {
-//                txtID.setText(oldValue);
-//            }
-//        });
-//
-//    }
+    public void initializeNodes() {
+       txtID.textProperty().addListener((obs, oldValue, newValue) -> {
+            if (newValue != null && !newValue.matches("\\d")) {
+               txtID.setText(oldValue);
+           }
+      });
+
+    }
 }
